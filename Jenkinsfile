@@ -5,7 +5,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE_NAME = 'marketpeak'
+        DOCKER_IMAGE_NAME = 'marketpeaks'
         TAG = "v${BUILD_NUMBER}"
     }
 
