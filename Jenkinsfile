@@ -46,5 +46,12 @@ pipeline {
                 }
             }
         }
+        stage('Clean Unuse Container and Image') {
+            steps {
+                script {
+                    clean(DOCKER_IMAGE_NAME)
+                }
+            }
+        }
     }
 }
