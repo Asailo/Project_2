@@ -1,6 +1,6 @@
 services:
   market:
     container_name: MarketPeak
-    build: orisuniyanu/marketpeak:${TAG}
+    image: orisuniyanu/marketpeak:${TAG}
     ports:
-      - 8080:8080
+      - 5400:8080
