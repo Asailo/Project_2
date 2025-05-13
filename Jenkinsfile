@@ -11,8 +11,8 @@ pipeline {
     stages {
         stage('Debug') {
             steps {
-                echo "TAG: ${TAG}" // Debug the tag value
-                echo "DOCKER_IMAGE_NAME: ${DOCKER_IMAGE_NAME}" // Debug the image name
+                echo "TAG: ${TAG}"
+                echo "DOCKER_IMAGE_NAME: ${DOCKER_IMAGE_NAME}"
             }
         }
 
@@ -36,6 +36,15 @@ pipeline {
             steps {
                 script {
                     push(DOCKER_IMAGE_NAME)
+                }
+            }
+        }
+        stage('Deploy to Prod VM') {
+            steps {
+                script {
+                    deploy(DOCKER_IMAGE_NAME) {
+
+                    }
                 }
             }
         }
