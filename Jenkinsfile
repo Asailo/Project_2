@@ -42,9 +42,7 @@ pipeline {
         stage('Deploy to Prod VM') {
             steps {
                 script {
-                    deploy(DOCKER_IMAGE_NAME) {
-
-                    }
+                    deploy(DOCKER_IMAGE_NAME)
                 }
             }
         }
