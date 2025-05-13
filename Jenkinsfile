@@ -1,7 +1,4 @@
-@Library('Jenkins-Library') _
-
 pipeline {
-    
     agent any
 
     environment {
@@ -10,6 +7,13 @@ pipeline {
     }
 
     stages {
+        stage('Debug') {
+            steps {
+                echo "TAG: ${TAG}" // Debug the tag value
+                echo "DOCKER_IMAGE_NAME: ${DOCKER_IMAGE_NAME}" // Debug the image name
+            }
+        }
+
         stage('Build') {
             steps {
                 script {
