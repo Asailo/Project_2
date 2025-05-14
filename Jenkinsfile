@@ -6,6 +6,7 @@ pipeline {
     environment {
         DOCKER_IMAGE_NAME = 'orisuniyanu/marketpeak'
         TAG = "v${BUILD_NUMBER}"
+        KUBECONFIG = "${WORKSPACE}/admin.conf"
     }
 
     stages {
@@ -39,6 +40,7 @@ pipeline {
                 }
             }
         }
+
         stage('Deploy to Prod VM') {
             steps {
                 script {
@@ -46,6 +48,19 @@ pipeline {
                 }
             }
         }
+
+        stage('Deploy to Kubernetes') {
+            steps {
+                withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG_FILE')]) {
+                    sh '''
+                        cp $KUBECONFIG_FILE $KUBECONFIG
+                        kubectl apply -f k8s/deployment.yaml
+                        kubectl apply -f k8s/service.yaml
+                    '''
+                }
+            }
+        }
+
         stage('Clean Unuse Container and Image') {
             steps {
                 script {
