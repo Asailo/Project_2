@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: marketpeak
+  labels:
+    app: marketpeak
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: marketpeak
+  template:
+    metadata:
+      labels:
+        app: marketpeak
+    spec:
+      containers:
+        - name: my-container
+          image: orisuniyanu/marketpeak:latest
+          ports:
+            - containerPort: 5400
