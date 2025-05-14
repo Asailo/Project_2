@@ -51,12 +51,8 @@ pipeline {
 
         stage('Deploy to Kubernetes') {
             steps {
-                withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG_FILE')]) {
-                    sh '''
-                        cp $KUBECONFIG_FILE $KUBECONFIG
-                        kubectl apply -f k8s/deployment.yaml
-                        kubectl apply -f k8s/service.yaml
-                    '''
+                script {
+                    deploK8s(DOCKER_IMAGE_NAME)
                 }
             }
         }
