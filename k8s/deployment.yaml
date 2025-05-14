@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: my-container
-          image: orisuniyanu/marketpeak:latest
+          image: orisuniyanu/marketpeak:${TAG}
           ports:
             - containerPort: 5400
