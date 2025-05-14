@@ -5,7 +5,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE_NAME = 'orisuniyanu/marketpeak'
-        TAG = "v${BUILD_NUMBER}"
+        TAG = "${BUILD_NUMBER}-${env.GIT_COMMIT?.take(3)}"
         KUBECONFIG = "${WORKSPACE}/admin.conf"
     }
 
