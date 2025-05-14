@@ -49,14 +49,6 @@ pipeline {
             }
         }
 
-        stage('Deploy to Kubernetes') {
-            steps {
-                script {
-                    deploK8s(DOCKER_IMAGE_NAME)
-                }
-            }
-        }
-
         stage('Clean Unuse Container and Image') {
             steps {
                 script {
